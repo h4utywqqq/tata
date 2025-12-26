@@ -1,25 +1,17 @@
 name: testy
 on:
+  pull_request:
   workflow_dispatch:
-    # Optional inputs can be added here
-    inputs:
-      should_fail:
-        description: 'Set to true to force a failure'
-        required: false
-        default: 'false'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Wait for 3 minutes
+        run: sleep 180s 
+        shell: bash 
 
-      - name: Deliberately fail the job if input is 'true'
-        if: ${{ github.event.inputs.should_fail == 'true' }}
+      - name: Deliberately fail the job
         run: |
-          echo "Failing the workflow as requested via input."
+          echo "Failing the workflow "
           exit 1
-
-      - name: This step will not run if the previous one failed
-        run: echo "Workflow continuing..."
