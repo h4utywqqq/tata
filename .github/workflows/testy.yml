@@ -9,7 +9,7 @@ on:
         default: 'false'
 
 jobs:
-  build:
+  testy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
